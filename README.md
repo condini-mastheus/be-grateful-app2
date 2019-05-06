@@ -1,4 +1,4 @@
-# Begrateful _with react_
+# BeGrateful _with react_
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
