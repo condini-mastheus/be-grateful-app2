@@ -6,7 +6,10 @@
   "extends": "airbnb",
   "globals": {
     "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
+    "SharedArrayBuffer": "readonly",
+    "describe": true,
+    "it": true,
+    "expect": true
   },
   "parserOptions": {
     "ecmaFeatures": {
