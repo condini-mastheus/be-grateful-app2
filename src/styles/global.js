@@ -7,6 +7,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     outline: none;
     box-sizing: border-box;
+    text-decoration: none;
   }
 
   body {
@@ -50,6 +51,45 @@ const GlobalStyles = createGlobalStyle`
   }
   ::placeholder { /* Most modern browsers support this now. */
     color: #c1c1c1;
+  }
+
+  .react-calendar {
+    border: none !important;
+    width: 80% !important;
+    font-family: 'Roboto Condensed', sans-serif !important;
+    text-decoration: none !important;
+    margin: 0 auto;
+
+    .react-calendar__month-view__days__day {
+      color: #111;
+    }
+
+    .react-calendar__navigation {
+      background: #e3717d !important;
+      margin: 0;
+
+      button {
+        background: #e3717d !important;
+        color: #fff !important;
+
+        &:hover {
+          background: #e57b7d !important;
+        }
+      }
+    }
+
+    .react-calendar__tile {
+      background: #f9f9f9;
+    }
+
+    .react-calendar__month-view__days__day--neighboringMonth {
+      color: #969696;
+    }
+
+    .react-calendar__tile--now {
+      color: #d74177;
+      font-weight: 900;
+    }
   }
 `;
 

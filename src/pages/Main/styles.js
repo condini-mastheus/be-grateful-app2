@@ -35,7 +35,7 @@ export const Title = styled.h2`
 
 export const Content = styled.div`
   .calendar-wrap {
-    padding: 20px;
+    padding: 10px 0 30px 0;
   }
 
   .actions {

@@ -70,7 +70,12 @@ function Main() {
         {!date && (
           <Content>
             <div className="calendar-wrap">
-              <Calendar locale="en-us" onChange={_date => setDate(_date)} value={date} />
+              <Calendar
+                locale="en-us"
+                onChange={_date => setDate(_date)}
+                value={date}
+                activeStartDate={date}
+              />
             </div>
           </Content>
         )}
