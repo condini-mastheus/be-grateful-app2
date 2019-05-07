@@ -8,7 +8,7 @@ import PostList from '~/components/PostList';
 
 function Main() {
   const [post, setPost] = useState('');
-  const [isDateSelected, setDate] = useState(true);
+  const [date, setDate] = useState(new Date());
 
   function handleEnter(event) {
     if (event.keyCode === 13) {
@@ -27,14 +27,18 @@ function Main() {
         <header>
           <Title>Feeling grateful today?</Title>
         </header>
-        {isDateSelected && (
+        {date && (
           <>
             <Content>
               <div className="actions">
-                <button type="button" onClick={() => setDate(false)}>
+                <button type="button" onClick={() => setDate(null)}>
                   ←
                 </button>
-                <strong>24th set</strong>
+                <strong>
+                  {`${date.getDay()}  ${date.toLocaleString('en-us', {
+                    month: 'short',
+                  })}`}
+                </strong>
               </div>
               <PostList />
             </Content>
@@ -54,10 +58,10 @@ function Main() {
           </>
         )}
 
-        {!isDateSelected && (
+        {!date && (
           <Content>
             <div className="calendar-wrap">
-              <Calendar />
+              <Calendar locale="en-us" onChange={_date => setDate(new Date(_date))} value={date} />
             </div>
           </Content>
         )}
