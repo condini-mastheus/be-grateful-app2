@@ -62,6 +62,7 @@ function Main() {
                 value={post}
                 onKeyDown={handleEnter}
                 onChange={handleChange}
+                autoFocus={true}
               />
             </footer>
           </>

@@ -22,7 +22,9 @@ export const ListItem = styled.li`
   }
 
   p {
-    color: #f18569;
+    color: #505050;
     font-size: 0.8rem;
+    text-align: justify;
+    line-height: 1.6em;
   }
 `;

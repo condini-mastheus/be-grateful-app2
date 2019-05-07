@@ -8,6 +8,7 @@ export const Container = styled.div`
   section {
     background: ${colors.white};
     border-radius: 20px;
+    overflow: hidden;
 
     header {
       padding: 20px;
@@ -15,14 +16,14 @@ export const Container = styled.div`
     }
 
     footer {
-      padding: 20px;
-
       textarea {
         width: 100%;
-        padding: 15px 20px;
-        border: 0.3px ${colors.secundary} solid;
+        padding: 20px;
+        border: none;
         font-size: 14px;
         resize: none;
+        background: #ffffff;
+        height: 150px;
       }
     }
   }
