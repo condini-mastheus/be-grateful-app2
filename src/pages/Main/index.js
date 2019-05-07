@@ -9,6 +9,7 @@ import PostList from '~/components/PostList';
 function Main() {
   const [post, setPost] = useState('');
   const [date, setDate] = useState(new Date());
+  const today = new Date();
 
   function handleEnter(event) {
     if (event.keyCode === 13) {
@@ -25,7 +26,15 @@ function Main() {
     <Container>
       <section>
         <header>
-          <Title>Feeling grateful today?</Title>
+          <Title>
+            {date
+              ? today.getUTCDate() === date.getUTCDate() && today.getMonth() === date.getMonth()
+                ? 'Feeling grateful today?'
+                : `Feeling grateful on  ${date.getUTCDate()}  ${date.toLocaleString('en-us', {
+                  month: 'short',
+                })}?`
+              : 'Choose a day that you are grateful for'}
+          </Title>
         </header>
         {date && (
           <>
