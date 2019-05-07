@@ -30,10 +30,10 @@ function Main() {
             {date
               ? today.getUTCDate() === date.getUTCDate() && today.getMonth() === date.getMonth()
                 ? 'Feeling grateful today?'
-                : `Feeling grateful on  ${date.getUTCDate()}  ${date.toLocaleString('en-us', {
+                : `Feeling grateful on ${date.toLocaleString('en-us', {
                   month: 'short',
-                })}?`
-              : 'Choose a day that you are grateful for'}
+                })} ${date.getUTCDate()}?`
+              : 'Choose a day that you are grateful for...'}
           </Title>
         </header>
         {date && (
@@ -44,9 +44,9 @@ function Main() {
                   ←
                 </button>
                 <strong>
-                  {`${date.getUTCDate()}  ${date.toLocaleString('en-us', {
+                  {`${date.toLocaleString('en-us', {
                     month: 'short',
-                  })}`}
+                  })} ${date.getUTCDate()}`}
                 </strong>
               </div>
               <PostList />
