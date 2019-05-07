@@ -35,7 +35,7 @@ function Main() {
                   ←
                 </button>
                 <strong>
-                  {`${date.getDay()}  ${date.toLocaleString('en-us', {
+                  {`${date.getUTCDate()}  ${date.toLocaleString('en-us', {
                     month: 'short',
                   })}`}
                 </strong>
@@ -61,7 +61,7 @@ function Main() {
         {!date && (
           <Content>
             <div className="calendar-wrap">
-              <Calendar locale="en-us" onChange={_date => setDate(new Date(_date))} value={date} />
+              <Calendar locale="en-us" onChange={_date => setDate(_date)} value={date} />
             </div>
           </Content>
         )}

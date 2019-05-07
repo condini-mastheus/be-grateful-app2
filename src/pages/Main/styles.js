@@ -66,6 +66,9 @@ export const Content = styled.div`
 
     strong {
       color: ${colors.primary};
+      padding: 10px;
+      background: ${colors.secundary};
+      border-radius: 10px;
     }
   }
 `;
