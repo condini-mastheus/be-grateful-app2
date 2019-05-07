@@ -34,6 +34,10 @@ export const Title = styled.h2`
 `;
 
 export const Content = styled.div`
+  .calendar-wrap {
+    padding: 20px;
+  }
+
   .actions {
     padding: 20px;
     display: flex;
