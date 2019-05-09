@@ -28,6 +28,11 @@ function Main({ savePostRequest }) {
     setPost(event.target.value);
   }
 
+  function handleDateChange(_date) {
+    setDate(_date);
+    savePostRequest(_date);
+  }
+
   return (
     <Container>
       <section>
@@ -55,7 +60,7 @@ function Main({ savePostRequest }) {
                   })} ${date.getUTCDate()}`}
                 </strong>
               </div>
-              <PostList />
+              <PostList date={date} />
             </Content>
             <footer>
               <textarea
@@ -80,7 +85,7 @@ function Main({ savePostRequest }) {
             <div className="calendar-wrap">
               <Calendar
                 locale="en-us"
-                onChange={_date => setDate(_date)}
+                onChange={_date => handleDateChange(_date)}
                 value={date}
                 activeStartDate={date}
               />

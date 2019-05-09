@@ -6,9 +6,11 @@ import { Creators as PostsActions } from '~/store/ducks/posts';
 
 import { List, ListItem, Loading } from './styles';
 
-function PostList({ getPostsRequest, posts }) {
+function PostList({ getPostsRequest, posts, date }) {
   useEffect(() => {
-    getPostsRequest();
+    if (date) {
+      getPostsRequest(date);
+    }
   }, []);
 
   if (posts.isLoading) {

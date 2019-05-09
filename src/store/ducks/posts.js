@@ -58,8 +58,9 @@ export default function Posts(state = INITIAL_STATE, action) {
 }
 
 export const Creators = {
-  getPostsRequest: () => ({
+  getPostsRequest: date => ({
     type: Types.LOAD_REQUEST,
+    payload: { date },
   }),
   getPostsSuccess: data => ({
     type: Types.LOAD_SUCCESS,
