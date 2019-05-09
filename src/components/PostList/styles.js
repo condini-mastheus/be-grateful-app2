@@ -17,7 +17,7 @@ export const ListItem = styled.li`
     border-bottom: none;
   }
 
-  &:nth-child(even) {
+  &:nth-child(odd) {
     background: #f9f9f9;
   }
 
