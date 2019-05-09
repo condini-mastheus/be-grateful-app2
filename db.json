@@ -1,3 +1,9 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "post": "Today was a great day",
+      "date": "2019-05-09T15:29:17.639Z",
+      "id": 1
+    }
+  ]
 }

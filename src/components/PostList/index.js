@@ -4,9 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { Creators as PostsActions } from '~/store/ducks/posts';
 
-import {
-  List, ListItem, Loading, EmptyList,
-} from './styles';
+import { List, ListItem, Loading } from './styles';
 
 function PostList({ getPostsRequest, posts, date }) {
   useEffect(() => {
@@ -25,15 +23,16 @@ function PostList({ getPostsRequest, posts, date }) {
 
   return (
     <List>
-      {posts.data.map(post => (
-        <ListItem key={post.id}>
-          <p>{post.post}</p>
-        </ListItem>
-      ))}
-      {posts.data.length === 0 && (
+      {posts.data.length === 0 ? (
         <ListItem empty>
           <p>You could the first one to be grateful this day</p>
         </ListItem>
+      ) : (
+        posts.data.map(post => (
+          <ListItem key={post.id}>
+            <p>{post.post}</p>
+          </ListItem>
+        ))
       )}
     </List>
   );

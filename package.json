@@ -29,7 +29,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "serve": "json-server --watch -p 3333 db.json",
+    "serve": "json-server --watch -p 3333 -d 3000 db.json",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -48,16 +48,3 @@ export const Loading = styled.div`
     color: ${colors.dark};
   }
 `;
-
-export const EmptyList = styled.div`
-  padding: 20px;
-  margin: 0 20px;
-  background: #eea282;
-
-  p {
-    display: block;
-    font-size: 0.8em;
-    text-align: center;
-    color: ${colors.dark};
-  }
-`;

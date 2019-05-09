@@ -20,6 +20,7 @@ export default function Posts(state = INITIAL_STATE, action) {
     case Types.LOAD_REQUEST:
       return {
         ...state,
+        isLoading: true,
       };
     case Types.LOAD_SUCCESS:
       return {

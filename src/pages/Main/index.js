@@ -10,7 +10,7 @@ import { Container, Title, Content } from './styles';
 
 import PostList from '~/components/PostList';
 
-function Main({ savePostRequest }) {
+function Main({ savePostRequest, getPostsRequest }) {
   const [post, setPost] = useState('');
   const [date, setDate] = useState(new Date());
   const today = new Date();
@@ -29,8 +29,8 @@ function Main({ savePostRequest }) {
   }
 
   function handleDateChange(_date) {
+    getPostsRequest(_date);
     setDate(_date);
-    savePostRequest(_date);
   }
 
   return (
