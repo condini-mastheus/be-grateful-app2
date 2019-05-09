@@ -23,6 +23,11 @@ function PostList({ getPostsRequest, posts, date }) {
 
   return (
     <List>
+      {posts.isSending && (
+        <ListItem key={Math.random()}>
+          <p>...</p>
+        </ListItem>
+      )}
       {posts.data.length === 0 ? (
         <ListItem empty>
           <p>You could the first one to be grateful this day</p>

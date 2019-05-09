@@ -10,16 +10,15 @@ import { Container, Title, Content } from './styles';
 
 import PostList from '~/components/PostList';
 
-function Main({ savePostRequest, getPostsRequest }) {
+function Main({ savePostRequest, getPostsRequest, posts }) {
   const [post, setPost] = useState('');
   const [date, setDate] = useState(new Date());
   const today = new Date();
 
   function handleEnter(event) {
     if (event.keyCode === 13) {
-      setPost('');
-
       savePostRequest({ post, date });
+      setPost('');
       event.preventDefault();
     }
   }
@@ -73,7 +72,7 @@ function Main({ savePostRequest, getPostsRequest }) {
                 value={post}
                 onKeyDown={handleEnter}
                 onChange={handleChange}
-                disabled={post.isSending}
+                disabled={posts.isSending}
                 autoFocus
               />
             </footer>

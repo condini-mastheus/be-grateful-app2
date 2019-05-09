@@ -6,6 +6,8 @@ export const List = styled.ul`
   padding: 0;
   margin: 0;
   list-style-type: none;
+  max-height: 400px;
+  overflow-y: auto;
 `;
 
 export const ListItem = styled.li`
