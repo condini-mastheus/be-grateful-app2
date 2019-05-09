@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { colors, metrics } from '~/styles';
+import { colors } from '~/styles';
 
 export const List = styled.ul`
   padding: 0;
@@ -26,5 +26,18 @@ export const ListItem = styled.li`
     font-size: 0.8rem;
     text-align: justify;
     line-height: 1.6em;
+  }
+`;
+
+export const Loading = styled.div`
+  padding: 20px;
+  margin: 0 20px;
+  background: #f2f2f2;
+
+  span {
+    display: block;
+    font-size: 0.8em;
+    text-align: center;
+    color: ${colors.dark};
   }
 `;

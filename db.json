@@ -2,7 +2,15 @@
   "posts": [
     {
       "id": 1,
-      "text": "lorem ipsum dolar"
+      "text": "Today I spoke with my mom"
+    },
+    {
+      "id": 2,
+      "text": "Talked to my crush"
+    },
+    {
+      "id": 3,
+      "text": "Got engaged today!!"
     }
   ]
 }
