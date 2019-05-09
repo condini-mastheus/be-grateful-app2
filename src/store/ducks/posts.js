@@ -12,7 +12,7 @@ export const Types = {
 const INITIAL_STATE = Immutable({
   isLoading: true,
   isSending: false,
-  data: [],
+  data: {},
 });
 
 export default function Posts(state = INITIAL_STATE, action) {
@@ -39,7 +39,8 @@ export default function Posts(state = INITIAL_STATE, action) {
         isSending: true,
       };
     case Types.SAVE_SUCCESS: {
-      const posts = [action.payload.data, ...state.data];
+      const { data } = action.payload;
+      const posts = { data, ...state.data };
 
       return {
         ...state,

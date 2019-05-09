@@ -28,14 +28,14 @@ function PostList({ getPostsRequest, posts, date }) {
           <p>...</p>
         </ListItem>
       )}
-      {posts.data.length === 0 ? (
+      {Object.keys(posts.data).length === 0 ? (
         <ListItem empty>
           <p>You could the first one to be grateful this day</p>
         </ListItem>
       ) : (
-        posts.data.map(post => (
-          <ListItem key={post.id}>
-            <p>{post.post}</p>
+        Object.keys(posts.data).map(postId => (
+          <ListItem key={postId}>
+            <p>{posts.data[postId].post}</p>
           </ListItem>
         ))
       )}
