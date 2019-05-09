@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 
 import Calendar from 'react-calendar';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { Creators as PostsActions } from '~/store/ducks/posts';
 
 import { Container, Title, Content } from './styles';
 
 import PostList from '~/components/PostList';
 
-function Main() {
+function Main({ savePostRequest }) {
   const [post, setPost] = useState('');
   const [date, setDate] = useState(new Date());
   const today = new Date();
@@ -14,6 +18,8 @@ function Main() {
   function handleEnter(event) {
     if (event.keyCode === 13) {
       setPost('');
+
+      savePostRequest({ post, date });
       event.preventDefault();
     }
   }
@@ -62,7 +68,8 @@ function Main() {
                 value={post}
                 onKeyDown={handleEnter}
                 onChange={handleChange}
-                autoFocus={true}
+                disabled={post.isSending}
+                autoFocus
               />
             </footer>
           </>
@@ -85,4 +92,13 @@ function Main() {
   );
 }
 
-export default Main;
+const mapStateToProps = state => ({
+  posts: state.posts,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(PostsActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Main);

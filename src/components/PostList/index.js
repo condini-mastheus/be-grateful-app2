@@ -23,7 +23,7 @@ function PostList({ getPostsRequest, posts }) {
     <List>
       {posts.data.map(post => (
         <ListItem key={post.id}>
-          <p>{post.text}</p>
+          <p>{post.post}</p>
         </ListItem>
       ))}
     </List>
