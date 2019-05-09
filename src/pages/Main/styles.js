@@ -24,6 +24,10 @@ export const Container = styled.div`
         resize: none;
         background: #ffffff;
         height: 150px;
+
+        &:disabled {
+          opacity: 0.2;
+        }
       }
     }
   }

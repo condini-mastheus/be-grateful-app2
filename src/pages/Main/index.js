@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 
 import Calendar from 'react-calendar';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { Creators as PostsActions } from '~/store/ducks/posts';
 
 import { Container, Title, Content } from './styles';
 
 import PostList from '~/components/PostList';
 
-function Main() {
+function Main({ savePostRequest, getPostsRequest, posts }) {
   const [post, setPost] = useState('');
   const [date, setDate] = useState(new Date());
   const today = new Date();
 
   function handleEnter(event) {
     if (event.keyCode === 13) {
+      savePostRequest({ post, date });
       setPost('');
       event.preventDefault();
     }
@@ -20,6 +25,11 @@ function Main() {
 
   function handleChange(event) {
     setPost(event.target.value);
+  }
+
+  function handleDateChange(_date) {
+    getPostsRequest(_date);
+    setDate(_date);
   }
 
   return (
@@ -49,7 +59,7 @@ function Main() {
                   })} ${date.getUTCDate()}`}
                 </strong>
               </div>
-              <PostList />
+              <PostList date={date} />
             </Content>
             <footer>
               <textarea
@@ -62,7 +72,8 @@ function Main() {
                 value={post}
                 onKeyDown={handleEnter}
                 onChange={handleChange}
-                autoFocus={true}
+                disabled={posts.isSending}
+                autoFocus
               />
             </footer>
           </>
@@ -73,7 +84,7 @@ function Main() {
             <div className="calendar-wrap">
               <Calendar
                 locale="en-us"
-                onChange={_date => setDate(_date)}
+                onChange={_date => handleDateChange(_date)}
                 value={date}
                 activeStartDate={date}
               />
@@ -85,4 +96,13 @@ function Main() {
   );
 }
 
-export default Main;
+const mapStateToProps = state => ({
+  posts: state.posts,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(PostsActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Main);

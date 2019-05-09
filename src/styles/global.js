@@ -53,6 +53,15 @@ const GlobalStyles = createGlobalStyle`
     color: #c1c1c1;
   }
 
+  &::-webkit-scrollbar {
+    width: 4px;
+    background: #fff;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color:  #d74177;
+  }
+
   .react-calendar {
     border: none !important;
     width: 80% !important;
