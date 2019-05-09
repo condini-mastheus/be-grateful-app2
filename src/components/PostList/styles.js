@@ -27,6 +27,13 @@ export const ListItem = styled.li`
     text-align: justify;
     line-height: 1.6em;
   }
+
+  ${props => props.empty
+    && `
+    p {
+      color: ${colors.primary};
+    }
+  `}
 `;
 
 export const Loading = styled.div`
@@ -35,6 +42,19 @@ export const Loading = styled.div`
   background: #f2f2f2;
 
   span {
+    display: block;
+    font-size: 0.8em;
+    text-align: center;
+    color: ${colors.dark};
+  }
+`;
+
+export const EmptyList = styled.div`
+  padding: 20px;
+  margin: 0 20px;
+  background: #eea282;
+
+  p {
     display: block;
     font-size: 0.8em;
     text-align: center;
