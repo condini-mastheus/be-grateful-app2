@@ -10,10 +10,8 @@ import {
 
 function PostList({ getPostsRequest, posts, date }) {
   useEffect(() => {
-    if (date) {
-      getPostsRequest(date);
-    }
-  }, []);
+    getPostsRequest(date);
+  }, [getPostsRequest, date]);
 
   if (posts.isLoading) {
     return (
