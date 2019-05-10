@@ -35,7 +35,7 @@ export function* getPosts(action) {
     yield put(PostsActions.getPostsSuccess(data));
   } catch (e) {
     yield put(
-      PostsActions.savePostFailure('We are sorry, but we could not fetch this day posts :('),
+      PostsActions.getPostsFailure('We are sorry, but we could not fetch this day posts :('),
     );
   }
 }
