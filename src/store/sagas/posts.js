@@ -29,12 +29,14 @@ export function* getPosts(action) {
 
     const { data } = yield call(
       api.get,
-      `/posts?date_gte=${initalDate}&date_lte=${finalDate}&_sort=date&_order=desc`,
+      `/posts.json?orderBy="date"&startAt="${initalDate}"&endAt="${finalDate}"`,
     );
 
     yield put(PostsActions.getPostsSuccess(data));
   } catch (e) {
-    console.tron.error(e);
+    yield put(
+      PostsActions.getPostsFailure('We are sorry, but we could not fetch this day posts :('),
+    );
   }
 }
 
@@ -44,10 +46,11 @@ export function* savePost(action) {
       payload: { newPost },
     } = action;
 
-    const { data } = yield call(api.post, '/posts', { ...newPost });
+    const { data: post } = yield call(api.post, '/posts.json', { ...newPost });
+    const { data } = yield call(api.get, `/posts/${post.name}.json`, { ...newPost });
 
     yield put(PostsActions.savePostSuccess(data));
   } catch (e) {
-    console.tron.error(e);
+    yield put(PostsActions.savePostFailure('We are sorry, but your post was not saved :('));
   }
 }

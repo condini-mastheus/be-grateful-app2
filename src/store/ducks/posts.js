@@ -12,7 +12,8 @@ export const Types = {
 const INITIAL_STATE = Immutable({
   isLoading: true,
   isSending: false,
-  data: [],
+  data: {},
+  error: '',
 });
 
 export default function Posts(state = INITIAL_STATE, action) {
@@ -32,6 +33,7 @@ export default function Posts(state = INITIAL_STATE, action) {
       return {
         ...state,
         isLoading: false,
+        error: action.payload.error,
       };
     case Types.SAVE_REQUEST:
       return {
@@ -39,7 +41,8 @@ export default function Posts(state = INITIAL_STATE, action) {
         isSending: true,
       };
     case Types.SAVE_SUCCESS: {
-      const posts = [action.payload.data, ...state.data];
+      const { data } = action.payload;
+      const posts = { data, ...state.data };
 
       return {
         ...state,
@@ -52,6 +55,7 @@ export default function Posts(state = INITIAL_STATE, action) {
       return {
         ...state,
         isSending: false,
+        error: action.payload.error,
       };
     default:
       return state;
@@ -67,8 +71,9 @@ export const Creators = {
     type: Types.LOAD_SUCCESS,
     payload: { data },
   }),
-  getPostsFailure: () => ({
+  getPostsFailure: error => ({
     type: Types.LOAD_FAILURE,
+    payload: { error },
   }),
   savePostRequest: newPost => ({
     type: Types.SAVE_REQUEST,
@@ -78,7 +83,8 @@ export const Creators = {
     type: Types.SAVE_SUCCESS,
     payload: { data },
   }),
-  savePostFailure: () => ({
+  savePostFailure: error => ({
     type: Types.SAVE_FAILURE,
+    payload: { error },
   }),
 };

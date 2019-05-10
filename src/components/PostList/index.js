@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Creators as PostsActions } from '~/store/ducks/posts';
 
-import { List, ListItem, Loading } from './styles';
+import {
+  List, ListItem, Loading, ErrorMessage,
+} from './styles';
 
 function PostList({ getPostsRequest, posts, date }) {
   useEffect(() => {
@@ -22,24 +24,30 @@ function PostList({ getPostsRequest, posts, date }) {
   }
 
   return (
-    <List>
-      {posts.isSending && (
-        <ListItem key={Math.random()}>
-          <p>...</p>
-        </ListItem>
-      )}
-      {posts.data.length === 0 ? (
-        <ListItem empty>
-          <p>You could the first one to be grateful this day</p>
-        </ListItem>
+    <>
+      {posts.error ? (
+        <ErrorMessage>{posts.error}</ErrorMessage>
       ) : (
-        posts.data.map(post => (
-          <ListItem key={post.id}>
-            <p>{post.post}</p>
-          </ListItem>
-        ))
+        <List>
+          {posts.isSending && (
+            <ListItem key={Math.random()}>
+              <p>...</p>
+            </ListItem>
+          )}
+          {Object.keys(posts.data).length === 0 ? (
+            <ListItem empty>
+              <p>You could the first one to be grateful this day</p>
+            </ListItem>
+          ) : (
+            Object.keys(posts.data).map(postId => (
+              <ListItem key={postId}>
+                <p>{posts.data[postId].post}</p>
+              </ListItem>
+            ))
+          )}
+        </List>
       )}
-    </List>
+    </>
   );
 }
 

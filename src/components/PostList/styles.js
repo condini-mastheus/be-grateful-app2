@@ -50,3 +50,9 @@ export const Loading = styled.div`
     color: ${colors.dark};
   }
 `;
+
+export const ErrorMessage = styled.p`
+  padding: 20px;
+  background: ${colors.danger};
+  color: ${colors.white};
+`;
