@@ -34,7 +34,9 @@ export function* getPosts(action) {
 
     yield put(PostsActions.getPostsSuccess(data));
   } catch (e) {
-    console.tron.error(e);
+    yield put(
+      PostsActions.savePostFailure('We are sorry, but we could not fetch this day posts :('),
+    );
   }
 }
 
@@ -49,6 +51,6 @@ export function* savePost(action) {
 
     yield put(PostsActions.savePostSuccess(data));
   } catch (e) {
-    console.tron.error(e);
+    yield put(PostsActions.savePostFailure('We are sorry, but your post was not saved :('));
   }
 }
