@@ -45,4 +45,4 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 ## Deploy
 
-Deploy using Codeship and Heroku [link is here](https://be-greteful-2.herokuapp.com/).
+Deploy using Codeship and Heroku [link is here!](https://be-greteful-2.herokuapp.com/).
