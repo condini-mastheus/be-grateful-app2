@@ -42,11 +42,6 @@ function PostList({ getPostsRequest, posts, date }) {
         <ErrorMessage>{posts.error}</ErrorMessage>
       ) : (
         <List>
-          {posts.isSending && (
-            <ListItem key={Math.random()}>
-              <p>...</p>
-            </ListItem>
-          )}
           {Object.keys(posts.data).length === 0 ? (
             <ListItem empty>
               <p>You could the first one to be grateful this day</p>
@@ -57,6 +52,11 @@ function PostList({ getPostsRequest, posts, date }) {
                 <p>{posts.data[postId].post}</p>
               </ListItem>
             ))
+          )}
+          {posts.isSending && (
+            <ListItem key={Math.random()}>
+              <LoadingPlaceholder size="lg" />
+            </ListItem>
           )}
         </List>
       )}
