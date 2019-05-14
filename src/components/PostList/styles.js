@@ -38,17 +38,27 @@ export const ListItem = styled.li`
   `}
 `;
 
-export const Loading = styled.div`
-  padding: 20px;
-  margin: 0 20px;
-  background: #f2f2f2;
+export const LoadingPlaceholder = styled.p`
+  height: 20px;
+  animation: pulse 1s infinite ease-in-out;
 
-  span {
-    display: block;
-    font-size: 0.8em;
-    text-align: center;
-    color: ${colors.dark};
-  }
+
+  ${props => props.size === 'lg'
+    && `
+    width: 100%;
+  `}
+  ${props => props.size === 'md'
+    && `
+    width: 50%;
+  `}
+  ${props => props.size === 'xs'
+    && `
+    width: 25%;
+  `}
+  ${props => props.secondLine
+    && `
+    margin-top: 5px;
+  `}
 `;
 
 export const ErrorMessage = styled.p`

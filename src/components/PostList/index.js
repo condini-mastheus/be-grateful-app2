@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Creators as PostsActions } from '~/store/ducks/posts';
 
 import {
-  List, ListItem, Loading, ErrorMessage,
+  List, ListItem, ErrorMessage, LoadingPlaceholder,
 } from './styles';
 
 function PostList({ getPostsRequest, posts, date }) {
@@ -15,9 +15,24 @@ function PostList({ getPostsRequest, posts, date }) {
 
   if (posts.isLoading) {
     return (
-      <Loading>
-        <span>Loading gratitude messages</span>
-      </Loading>
+      <List>
+        <ListItem>
+          <LoadingPlaceholder size="md" />
+        </ListItem>
+        <ListItem>
+          <LoadingPlaceholder size="lg" />
+        </ListItem>
+        <ListItem>
+          <LoadingPlaceholder size="xs" />
+        </ListItem>
+        <ListItem>
+          <LoadingPlaceholder size="lg" />
+          <LoadingPlaceholder size="xs" secondLine />
+        </ListItem>
+        <ListItem>
+          <LoadingPlaceholder size="md" />
+        </ListItem>
+      </List>
     );
   }
 
