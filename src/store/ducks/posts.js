@@ -42,7 +42,7 @@ export default function Posts(state = INITIAL_STATE, action) {
       };
     case Types.SAVE_SUCCESS: {
       const { data } = action.payload;
-      const posts = { data, ...state.data };
+      const posts = { ...state.data, data };
 
       return {
         ...state,
