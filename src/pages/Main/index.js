@@ -28,7 +28,6 @@ function Main({ savePostRequest, getPostsRequest, posts }) {
   }
 
   function handleDateChange(_date) {
-    getPostsRequest(_date);
     setDate(_date);
   }
 
