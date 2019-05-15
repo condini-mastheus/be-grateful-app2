@@ -9,9 +9,17 @@ import {
 } from './styles';
 
 function PostList({ getPostsRequest, posts, date }) {
+  let messages = null;
+
   useEffect(() => {
     getPostsRequest(date);
   }, [getPostsRequest, date]);
+
+  useEffect(() => {
+    if (messages) {
+      messages.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
 
   if (posts.isLoading) {
     return (
@@ -58,6 +66,12 @@ function PostList({ getPostsRequest, posts, date }) {
               <LoadingPlaceholder size="lg" />
             </ListItem>
           )}
+          <ListItem
+            endList
+            ref={(el) => {
+              messages = el;
+            }}
+          />
         </List>
       )}
     </>
