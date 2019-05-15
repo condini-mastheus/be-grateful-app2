@@ -36,6 +36,11 @@ export const ListItem = styled.li`
       color: ${colors.primary};
     }
   `}
+  ${props => props.endList
+    && `
+    padding: 0;
+    background: none;
+  `}
 `;
 
 export const LoadingPlaceholder = styled.p`
