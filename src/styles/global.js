@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+import { medias } from '~/styles';
+
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:300,400,700');
   * {
@@ -64,7 +66,12 @@ const GlobalStyles = createGlobalStyle`
 
   .react-calendar {
     border: none !important;
-    width: 80% !important;
+    width: 100% !important;
+
+    @media ${medias.sm} {
+      width: 80% !important;
+    }
+
     font-family: 'Roboto Condensed', sans-serif !important;
     text-decoration: none !important;
     margin: 0 auto;

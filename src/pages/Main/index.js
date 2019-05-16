@@ -19,7 +19,6 @@ function Main({ savePostRequest, posts }) {
     if (event.keyCode === 13) {
       const createdAt = moment();
       const dayId = moment(date).format('YYYYMMDD');
-      // console.log({ post, createdAt, dayId });
       savePostRequest({ post, createdAt, dayId });
       setPost('');
       event.preventDefault();
@@ -39,9 +38,10 @@ function Main({ savePostRequest, posts }) {
       <section>
         <header>
           <Title>
-            {date && moment().diff(date, 'days') === 0
-              ? 'Feeling grateful today?'
-              : `Feeling grateful on ${moment(date).format('LL')}?`}
+            {date
+              && (moment().diff(date, 'days') === 0
+                ? 'Feeling grateful today?'
+                : `Feeling grateful on ${moment(date).format('LL')}?`)}
             {!date && 'Choose a day that you are grateful for...'}
           </Title>
         </header>

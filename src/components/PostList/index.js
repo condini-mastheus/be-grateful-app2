@@ -52,7 +52,7 @@ function PostList({ getPostsRequest, posts, date }) {
         <ErrorMessage>{posts.error}</ErrorMessage>
       ) : (
         <List>
-          {posts.data.length === 0 ? (
+          {posts.data.length === 0 && !posts.isSending ? (
             <ListItem empty>
               <p>You could the first one to be grateful this day</p>
             </ListItem>

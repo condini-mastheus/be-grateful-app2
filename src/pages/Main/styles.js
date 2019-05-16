@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
-import { colors } from '~/styles';
+import { colors, medias } from '~/styles';
 
 export const Container = styled.div`
   width: 100%;
+  padding: 0 20px;
 
   section {
     background: ${colors.white};
@@ -74,6 +75,11 @@ export const Content = styled.div`
       padding: 10px;
       background: ${colors.secundary};
       border-radius: 10px;
+      font-size: 0.75rem;
+
+      @media ${medias.sm} {
+        font-size: 1rem;
+      }
     }
   }
 `;

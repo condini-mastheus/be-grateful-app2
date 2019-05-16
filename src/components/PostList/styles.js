@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
-import { colors } from '~/styles';
+import { colors, medias } from '~/styles';
 
 export const List = styled.ul`
   padding: 0;
   margin: 0;
   list-style-type: none;
-  max-height: 400px;
+  max-height: 220px;
+  @media ${medias.sm} {
+    max-height: 400px;
+  }
   overflow-y: auto;
 `;
 
@@ -28,16 +31,21 @@ export const ListItem = styled.li`
 
   p {
     color: #505050;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     text-align: justify;
     line-height: 1.6em;
     display: flex;
     flex: 1;
+
+    @media ${medias.sm} {
+      font-size: 0.8rem;
+    }
   }
 
   small {
-    padding-left: 5px;
+    padding-left: 15px;
     font-size: 0.65em;
+
     color: ${colors.regular};
   }
 
