@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
-import Calendar from 'react-calendar';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import moment from 'moment-timezone';
+import Calendar from 'react-calendar';
 
 import { Creators as PostsActions } from '~/store/ducks/posts';
 
@@ -12,12 +13,14 @@ import PostList from '~/components/PostList';
 
 function Main({ savePostRequest, posts }) {
   const [post, setPost] = useState('');
-  const [date, setDate] = useState(new Date());
-  const today = new Date();
+  const [date, setDate] = useState(moment());
 
   function handleEnter(event) {
     if (event.keyCode === 13) {
-      savePostRequest({ post, date });
+      const createdAt = moment();
+      const dayId = moment(date).format('YYYYMMDD');
+      // console.log({ post, createdAt, dayId });
+      savePostRequest({ post, createdAt, dayId });
       setPost('');
       event.preventDefault();
     }
@@ -36,13 +39,10 @@ function Main({ savePostRequest, posts }) {
       <section>
         <header>
           <Title>
-            {date
-              ? today.getUTCDate() === date.getUTCDate() && today.getMonth() === date.getMonth()
-                ? 'Feeling grateful today?'
-                : `Feeling grateful on ${date.toLocaleString('en-us', {
-                  month: 'short',
-                })} ${date.getUTCDate()}?`
-              : 'Choose a day that you are grateful for...'}
+            {date && moment().diff(date, 'days') === 0
+              ? 'Feeling grateful today?'
+              : `Feeling grateful on ${moment(date).format('LL')}?`}
+            {!date && 'Choose a day that you are grateful for...'}
           </Title>
         </header>
         {date && (
@@ -52,11 +52,7 @@ function Main({ savePostRequest, posts }) {
                 <button type="button" onClick={() => setDate(null)}>
                   ←
                 </button>
-                <strong>
-                  {`${date.toLocaleString('en-us', {
-                    month: 'short',
-                  })} ${date.getUTCDate()}`}
-                </strong>
+                <strong>{`${moment(date).format('LL')}`}</strong>
               </div>
               <PostList date={date} />
             </Content>

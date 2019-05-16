@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import moment from 'moment-timezone';
 
 import { Creators as PostsActions } from '~/store/ducks/posts';
 
@@ -8,11 +9,13 @@ import {
   List, ListItem, ErrorMessage, LoadingPlaceholder,
 } from './styles';
 
+const tz = moment.tz.guess(true);
+
 function PostList({ getPostsRequest, posts, date }) {
   let messages = null;
 
   useEffect(() => {
-    getPostsRequest(date);
+    getPostsRequest(moment(date).format('YYYYMMDD'));
   }, [getPostsRequest, date]);
 
   useEffect(() => {
@@ -35,7 +38,6 @@ function PostList({ getPostsRequest, posts, date }) {
         </ListItem>
         <ListItem>
           <LoadingPlaceholder size="lg" />
-          <LoadingPlaceholder size="xs" secondLine />
         </ListItem>
         <ListItem>
           <LoadingPlaceholder size="md" />
@@ -50,14 +52,15 @@ function PostList({ getPostsRequest, posts, date }) {
         <ErrorMessage>{posts.error}</ErrorMessage>
       ) : (
         <List>
-          {Object.keys(posts.data).length === 0 ? (
+          {posts.data.length === 0 ? (
             <ListItem empty>
               <p>You could the first one to be grateful this day</p>
             </ListItem>
           ) : (
-            Object.keys(posts.data).map(postId => (
-              <ListItem key={postId}>
-                <p>{posts.data[postId].post}</p>
+            posts.data.map(post => (
+              <ListItem key={post.id}>
+                <p>{post.text}</p>
+                <small>{post.timestamp}</small>
               </ListItem>
             ))
           )}
@@ -79,7 +82,14 @@ function PostList({ getPostsRequest, posts, date }) {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts,
+  posts: {
+    ...state.posts,
+    data: Object.keys(state.posts.data).map(postId => ({
+      id: postId,
+      text: state.posts.data[postId].post,
+      timestamp: moment.tz(state.posts.data[postId].createdAt, tz).fromNow(),
+    })),
+  },
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(PostsActions, dispatch);
