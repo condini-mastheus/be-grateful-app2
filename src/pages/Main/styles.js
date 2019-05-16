@@ -75,6 +75,11 @@ export const Content = styled.div`
       padding: 10px;
       background: ${colors.secundary};
       border-radius: 10px;
+      font-size: 0.75rem;
+
+      @media ${medias.sm} {
+        font-size: 1rem;
+      }
     }
   }
 `;
