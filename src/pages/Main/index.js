@@ -17,7 +17,6 @@ function Main({ savePostRequest, posts }) {
 
   function handleEnter(event) {
     if (event.keyCode === 13) {
-      console.log(date);
       savePostRequest({ post, date });
       setPost('');
       event.preventDefault();
