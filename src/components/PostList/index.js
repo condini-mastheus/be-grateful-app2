@@ -9,6 +9,8 @@ import {
   List, ListItem, ErrorMessage, LoadingPlaceholder,
 } from './styles';
 
+const tz = moment.tz.guess(true);
+
 function PostList({ getPostsRequest, posts, date }) {
   let messages = null;
 
@@ -80,20 +82,16 @@ function PostList({ getPostsRequest, posts, date }) {
   );
 }
 
-const mapStateToProps = (state) => {
-  const tz = moment.tz.guess(true);
-
-  return {
-    posts: {
-      ...state.posts,
-      data: Object.keys(state.posts.data).map(postId => ({
-        id: postId,
-        text: state.posts.data[postId].post,
-        timestamp: moment.tz(state.posts.data[postId].date, tz).fromNow(),
-      })),
-    },
-  };
-};
+const mapStateToProps = state => ({
+  posts: {
+    ...state.posts,
+    data: Object.keys(state.posts.data).map(postId => ({
+      id: postId,
+      text: state.posts.data[postId].post,
+      timestamp: moment.tz(state.posts.data[postId].createdAt, tz).fromNow(),
+    })),
+  },
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators(PostsActions, dispatch);
 
