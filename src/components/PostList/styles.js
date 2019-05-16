@@ -14,6 +14,9 @@ export const ListItem = styled.li`
   background: ${colors.white};
   padding: 10px 20px;
   border-bottom: 0.3px ${colors.lighter} solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   &:last-child {
     border-bottom: none;
@@ -28,6 +31,14 @@ export const ListItem = styled.li`
     font-size: 0.8rem;
     text-align: justify;
     line-height: 1.6em;
+    display: flex;
+    flex: 1;
+  }
+
+  small {
+    padding-left: 5px;
+    font-size: 0.65em;
+    color: ${colors.regular};
   }
 
   ${props => props.empty
