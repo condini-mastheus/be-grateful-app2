@@ -26,7 +26,6 @@ export const Container = styled.div`
         background: #ffffff;
 
         @media ${medias.sm} {
-          /* height: 100px; */
           padding: 40px 20px;
         }
 
@@ -47,7 +46,10 @@ export const Container = styled.div`
 
 export const Title = styled.h2`
   color: ${colors.primary};
-  font-size: 1.5rem;
+  font-size: 1rem;
+  @media ${medias.sm} {
+    font-size: 1.5rem;
+  }
 `;
 
 export const Content = styled.div`
