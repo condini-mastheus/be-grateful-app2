@@ -39,7 +39,7 @@ function Main({ savePostRequest, posts }) {
         <header>
           <Title>
             {date
-              && (moment().diff(date, 'days') === 0
+              && (moment().startOf('day').diff(date, 'days') === 0
                 ? 'Feeling grateful today?'
                 : `Feeling grateful on ${moment(date).format('LL')}?`)}
             {!date && 'Choose a day that you are grateful for...'}
