@@ -6,7 +6,10 @@ export const List = styled.ul`
   padding: 0;
   margin: 0;
   list-style-type: none;
-  max-height: 400px;
+  max-height: 220px;
+  @media ${medias.sm} {
+    max-height: 400px;
+  }
   overflow-y: auto;
 `;
 
