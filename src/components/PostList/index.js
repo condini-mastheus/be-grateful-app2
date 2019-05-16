@@ -38,7 +38,6 @@ function PostList({ getPostsRequest, posts, date }) {
         </ListItem>
         <ListItem>
           <LoadingPlaceholder size="lg" />
-          <LoadingPlaceholder size="xs" secondLine />
         </ListItem>
         <ListItem>
           <LoadingPlaceholder size="md" />

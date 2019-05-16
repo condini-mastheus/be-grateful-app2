@@ -54,10 +54,9 @@ export const ListItem = styled.li`
   `}
 `;
 
-export const LoadingPlaceholder = styled.p`
+export const LoadingPlaceholder = styled.div`
   height: 20px;
   animation: pulse 1s infinite ease-in-out;
-
 
   ${props => props.size === 'lg'
     && `
