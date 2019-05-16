@@ -17,18 +17,29 @@ export const Container = styled.div`
     }
 
     footer {
-      textarea {
+      input {
         width: 100%;
         padding: 20px;
         border: none;
         font-size: 14px;
         resize: none;
         background: #ffffff;
-        height: 150px;
+
+        @media ${medias.sm} {
+          /* height: 100px; */
+          padding: 40px 20px;
+        }
 
         &:disabled {
           opacity: 0.2;
         }
+      }
+      span {
+        font-size: 0.7em;
+        text-align: center;
+        display: block;
+        padding: 9px 0;
+        color: red;
       }
     }
   }

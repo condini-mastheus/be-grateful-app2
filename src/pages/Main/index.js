@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import moment from 'moment-timezone';
+import { Form, Input } from '@rocketseat/unform';
+import * as Yup from 'yup';
 import Calendar from 'react-calendar';
 
 import { Creators as PostsActions } from '~/store/ducks/posts';
@@ -11,26 +13,21 @@ import { Container, Title, Content } from './styles';
 
 import PostList from '~/components/PostList';
 
+const schema = Yup.object().shape({
+  post: Yup.string()
+    .max(280, 'Limit is 280 characters')
+    .required('Please, type something'),
+});
+
 function Main({ savePostRequest, posts }) {
-  const [post, setPost] = useState('');
   const [date, setDate] = useState(moment());
 
-  function handleEnter(event) {
-    if (event.keyCode === 13) {
-      const createdAt = moment();
-      const dayId = moment(date).format('YYYYMMDD');
-      savePostRequest({ post, createdAt, dayId });
-      setPost('');
-      event.preventDefault();
-    }
-  }
-
-  function handleChange(event) {
-    setPost(event.target.value);
-  }
-
-  function handleDateChange(_date) {
-    setDate(_date);
+  function handleSubmit(data, { resetForm }) {
+    const { post } = data;
+    const createdAt = moment();
+    const dayId = moment(date).format('YYYYMMDD');
+    savePostRequest({ post, createdAt, dayId });
+    resetForm();
   }
 
   return (
@@ -39,7 +36,9 @@ function Main({ savePostRequest, posts }) {
         <header>
           <Title>
             {date
-              && (moment().startOf('day').diff(date, 'days') === 0
+              && (moment()
+                .startOf('day')
+                .diff(date, 'days') === 0
                 ? 'Feeling grateful today?'
                 : `Feeling grateful on ${moment(date).format('LL')}?`)}
             {!date && 'Choose a day that you are grateful for...'}
@@ -57,19 +56,18 @@ function Main({ savePostRequest, posts }) {
               <PostList date={date} />
             </Content>
             <footer>
-              <textarea
-                name="post"
-                id="#post"
-                rows="5"
-                placeholder={
-                  'Type something you are grateful for and press "Enter" to share with everyone'
-                }
-                value={post}
-                onKeyDown={handleEnter}
-                onChange={handleChange}
-                disabled={posts.isSending}
-                autoFocus
-              />
+              <Form schema={schema} onSubmit={handleSubmit}>
+                <Input
+                  type="text"
+                  name="post"
+                  placeholder={
+                    'Type something you are grateful for and press "Enter" to share with everyone'
+                  }
+                  autoComplete="off"
+                  disabled={posts.isSending}
+                  autoFocus
+                />
+              </Form>
             </footer>
           </>
         )}
@@ -79,7 +77,7 @@ function Main({ savePostRequest, posts }) {
             <div className="calendar-wrap">
               <Calendar
                 locale="en-us"
-                onChange={_date => handleDateChange(_date)}
+                onChange={_date => setDate(_date)}
                 value={date}
                 activeStartDate={date}
               />
