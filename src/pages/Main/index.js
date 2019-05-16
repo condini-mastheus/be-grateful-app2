@@ -19,7 +19,6 @@ function Main({ savePostRequest, posts }) {
     if (event.keyCode === 13) {
       const createdAt = moment();
       const dayId = moment(date).format('YYYYMMDD');
-      // console.log({ post, createdAt, dayId });
       savePostRequest({ post, createdAt, dayId });
       setPost('');
       event.preventDefault();
