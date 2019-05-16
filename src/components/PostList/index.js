@@ -13,7 +13,7 @@ function PostList({ getPostsRequest, posts, date }) {
   let messages = null;
 
   useEffect(() => {
-    getPostsRequest(date);
+    getPostsRequest(moment(date).format('YYYYMMDD'));
   }, [getPostsRequest, date]);
 
   useEffect(() => {
